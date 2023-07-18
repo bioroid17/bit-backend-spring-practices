@@ -22,12 +22,15 @@ public class HelloController {
 
 	@RequestMapping("/hello2")
 	public String hello2(String name) {
+		// get 방식으로 받은 파라미터의 이름이 name이면 메소드 파라미터 이름 name과 일치하므로 Spring이 자연스럽게 가져온다.
 		System.out.println("name:"+name);
 		return "/WEB-INF/views/hello.jsp";
 	}
 
 	@RequestMapping("/hello3")
 	public ModelAndView hello3(String name) {
+		// get 방식으로 받은 파라미터의 이름이 name이면 메소드 파라미터 이름 name과 일치하므로 Spring이 자연스럽게 가져온다.
+		// ModelAndView 클래스 객체에 get 방식으로 넘어온 파라미터 값을 추가
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("name", name);
 		mav.setViewName("/WEB-INF/views/hello3.jsp");
@@ -36,6 +39,8 @@ public class HelloController {
 
 	@RequestMapping("/hello4")
 	public String hello4(String name, Model model) {
+		// Model 객체에 get 방식으로 넘어온 파라미터 추가
+		// Model 객체는 ViewResolver를 통해 반환된 View에 전달된다.(ModelAndView)
 		model.addAttribute("name", name);
 		return "/WEB-INF/views/hello3.jsp";
 	}
@@ -43,7 +48,7 @@ public class HelloController {
 	@ResponseBody
 	@RequestMapping("/hello5")
 	public String hello5() {
-		// @ResponseBody가 붙어있으므로 String만 받는다.
+		// @ResponseBody가 붙어있어서 메세지를 바로 받기 가능
 		// String의 형식(json, xml 등)이 달라도 MessageConverter가 실행
 		// ajax에서 쓰기 유용하다.
 		return "<h1>Hello World</h1>";
