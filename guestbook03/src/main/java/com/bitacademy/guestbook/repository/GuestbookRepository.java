@@ -8,8 +8,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.bitacademy.guestbook.vo.GuestbookVo;
 
+@Repository
 public class GuestbookRepository {
 	public boolean insert(GuestbookVo vo) {
 		boolean result = false;
@@ -19,19 +22,16 @@ public class GuestbookRepository {
 		try {
 			conn = getConnection();
 
-			String sql = "insert into guestbook values (null, ?, ?, ?, ?)";
+			String sql = "insert into guestbook values (null, ?, ?, ?, now())";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getName());
 			pstmt.setString(2, vo.getPassword());
 			pstmt.setString(3, vo.getMessage());
-			pstmt.setString(4, vo.getRegDate());
 
 			int count = pstmt.executeUpdate();
 			result = count == 1;
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
 		} catch (SQLException e) {
 			System.out.println("Error:" + e);
 		} finally {
@@ -66,8 +66,6 @@ public class GuestbookRepository {
 			int count = pstmt.executeUpdate();
 			result = count == 1;
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
 		} catch (SQLException e) {
 			System.out.println("Error:" + e);
 		} finally {
@@ -100,8 +98,6 @@ public class GuestbookRepository {
 			
 			rs = pstmt.executeQuery();
 			
-			String passwd;
-			
 			if(rs.next()) {
 				if (password.equals(rs.getString(1))) {
 					result = true;
@@ -109,8 +105,6 @@ public class GuestbookRepository {
 			}
 			
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
 		} catch (SQLException e) {
 			System.out.println("Error:" + e);
 		} finally {
@@ -141,7 +135,7 @@ public class GuestbookRepository {
 		try {
 			conn = getConnection();
 
-			String sql = "select no, name, message, reg_date from guestbook";
+			String sql = "select no, name, message, reg_date from guestbook order by no desc";
 			pstmt = conn.prepareStatement(sql);
 
 			rs = pstmt.executeQuery();
@@ -161,8 +155,6 @@ public class GuestbookRepository {
 				result.add(vo);
 			}
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("드라이버 로딩 실패:" + e);
 		} catch (SQLException e) {
 			System.out.println("Error:" + e);
 		} finally {
@@ -184,13 +176,17 @@ public class GuestbookRepository {
 		return result;
 	}
 	
-	private Connection getConnection() throws ClassNotFoundException, SQLException {
+	private Connection getConnection() throws SQLException {
 		Connection conn = null;
 
-		Class.forName("org.mariadb.jdbc.Driver");
+		try {
+			Class.forName("org.mariadb.jdbc.Driver");
 
-		String url = "jdbc:mariadb://192.168.0.162:3306/webdb?charset=utf8";
-		conn = DriverManager.getConnection(url, "webdb", "webdb");
+			String url = "jdbc:mariadb://192.168.0.162:3306/webdb?charset=utf8";
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
+		} catch (ClassNotFoundException e) {
+			System.out.println("드라이버 로딩 실패:" + e);
+		}
 
 		return conn;
 	}
