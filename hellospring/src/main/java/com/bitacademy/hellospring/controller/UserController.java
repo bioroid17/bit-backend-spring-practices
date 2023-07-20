@@ -31,12 +31,6 @@ public class UserController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/list")	// 메소드 별 url
-	public String list() {
-		return "UserController.list()";
-	}
-	
-	@ResponseBody
 	@RequestMapping("/logout")
 	public String logout() {
 		return "UserController.logout()";
