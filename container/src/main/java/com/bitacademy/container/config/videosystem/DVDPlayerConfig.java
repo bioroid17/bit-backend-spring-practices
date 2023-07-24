@@ -22,4 +22,23 @@ public class DVDPlayerConfig {
 	public DVDPlayer dvdPlayer() {
 		return new DVDPlayer(avengers());
 	}
+	
+	// 주입하기 2
+	// parameter로 빈을 전달하는 방법
+	// 생성자 주입
+	@Bean
+	public DVDPlayer dvdPlayer02(DigitalVideoDisc dvd) {
+		return new DVDPlayer(dvd);
+	}
+	
+	// 주입하기 3
+	// parameter로 빈을 전달하는 방법
+	// setter 주입
+	@Bean
+	public DVDPlayer dvdPlayer03(DigitalVideoDisc dvd) {
+		DVDPlayer dvdPlayer = new DVDPlayer();
+		dvdPlayer.setDvd(dvd);
+		
+		return dvdPlayer;
+	}
 }
