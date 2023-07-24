@@ -1,6 +1,4 @@
-package com.bitacademy.container.config.videosystem;
-
-import com.bitacademy.container.videosystem.DigitalVideoDisc;
+package com.bitacademy.container.videosystem;
 
 public class BlankDisc implements DigitalVideoDisc {
 	private String title;
