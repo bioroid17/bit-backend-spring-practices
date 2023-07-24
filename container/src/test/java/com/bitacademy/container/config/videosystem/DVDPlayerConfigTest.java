@@ -17,15 +17,15 @@ import com.bitacademy.container.videosystem.DVDPlayer;
 public class DVDPlayerConfigTest {
 
 	@Autowired
-	@Qualifier
+	@Qualifier("dvdPlayer01")
 	private DVDPlayer dvdPlayer01;
 
 	@Autowired
-	@Qualifier
+	@Qualifier("dvdPlayer02")
 	private DVDPlayer dvdPlayer02;
 
 	@Autowired
-	@Qualifier
+	@Qualifier("dvdPlayer03")
 	private DVDPlayer dvdPlayer03;
 	
 	@Test
