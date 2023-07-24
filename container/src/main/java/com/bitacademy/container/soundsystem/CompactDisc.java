@@ -1,5 +1,5 @@
 package com.bitacademy.container.soundsystem;
 
-public class CompactDisc {
-
+public interface CompactDisc {
+	public String play();
 }
