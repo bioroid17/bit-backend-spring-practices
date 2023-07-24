@@ -27,6 +27,20 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
+		<!-- Spring Test -->
+		<!-- JUnit을 사용해서 container 안에 runner를 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- JUnit5(jupiter) -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.9.1</version>
+		</dependency>
 	</dependencies>
 	
 	<build>
