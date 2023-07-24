@@ -41,6 +41,19 @@
 		<property name="name" value="철수"/>
 	</bean>
 	
+	<!-- setter 사용하기: List Setting -->
+	<bean id="user9" class="com.bitacademy.container.user.User">
+		<property name="no" value="9"/>
+		<property name="name" value="아이언맨"/>
+		<property name="friends">
+			<list>
+				<value>스파이더맨</value>
+				<value>헐크</value>
+				<value>캡틴아메리카</value>
+			</list>
+		</property>
+	</bean>
+	
 	<bean id="friend" class="com.bitacademy.container.user.Friend">
 		<constructor-arg value="영희"/>
 	</bean>
@@ -50,6 +63,13 @@
 		<property name="no" value="7"/>
 		<property name="name" value="고길동"/>
 		<property name="friend" ref="friend"/>
+	</bean>
+	
+	<!-- DI 하기 2: constructor 사용 -->
+	<bean id="user8" class="com.bitacademy.container.user.User">
+		<constructor-arg name="no" value="8"/>
+		<constructor-arg name="name" value="김정자"/>
+		<constructor-arg ref="friend"/>
 	</bean>
 	
 </beans>

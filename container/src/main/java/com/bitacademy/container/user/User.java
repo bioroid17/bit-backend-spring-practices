@@ -1,5 +1,7 @@
 package com.bitacademy.container.user;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class User {
 	private Long no = 0L;
 	private String name = "둘리";
+	private List<String> friends;
 	
 	@Autowired
 	private Friend friend;
@@ -21,14 +24,22 @@ public class User {
 	{
 		this.name = name;
 	}
-	
+
 	public User(Long no, String name) {
 		this.no = no;
 		this.name = name;
 	}
+	
+	public User(Long no, String name, Friend friend) {
+		this.no = no;
+		this.name = name;
+		this.friend = friend;
+	}
+
+
 	@Override
 	public String toString() {
-		return "User [no=" + no + ", name=" + name + ", friend=" + friend + "]";
+		return "User [no=" + no + ", name=" + name + ", friends=" + friends + ", friend=" + friend + "]";
 	}
 
 	public void setNo(Long no) {
@@ -42,5 +53,10 @@ public class User {
 	public void setFriend(Friend friend) {
 		this.friend = friend;
 	}
+
+	public void setFriends(List<String> friends) {
+		this.friends = friends;
+	}
+
 
 }
