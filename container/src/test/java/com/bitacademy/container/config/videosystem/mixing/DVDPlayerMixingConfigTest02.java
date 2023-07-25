@@ -11,7 +11,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.bitacademy.container.videosystem.DVDPlayer;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes={DVDPlayerConfig.class})
+@ContextConfiguration(classes={VideoSystemConfig.class})
 public class DVDPlayerMixingConfigTest02 {
 	@Autowired
 	private DVDPlayer dvdPlayer;
